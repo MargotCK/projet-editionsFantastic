@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %} 
+<h2>Connexion</h2>
+    
+<h3>Connectez-vous</h3>
+
+        <form action="connexion" method="post">
+            <ul>
+                <li>
+                    <label for="email"> Email : </label>
+                        <input type="text"  id="" name="email" placeholder="*****@*****.fr" required>
+                </li><br>
+                <li>
+                    <label for="Mot de passe"> Mot de passe :</label>
+                        <input type="password"id="" name="password" placeholder=" 8 caractères" required>
+                </li><br>
+                <li>Mot de passe oublié ? <link rel="stylesheet" href="createPassword.html.twig"></li><br>
+                <li>
+                    <button></button>Se souvenir de moi
+                </li><br>
+            </ul>
+            <input type="submit" value="Se connecter">
+
+        </form>
+
+
+
+
+
+
+
+</body>
+</html>
+
+{% endblock %}

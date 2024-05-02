@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %} 
+
+<div class="card" style="width: 18rem;">
+    <h2>Inscription</h2>
+
+    <h3>Créez votre compte</h3>
+    
+        <form action="inscription" method="post">
+            <ul>
+                <li>
+                <label for="civility">Civilité :</label>
+                    <select name="civility" id="civility">
+                        <option value="monsieur">Monsieur</option>
+                        <option value="madame">Madame</option>
+                    </select><br>
+                </li><br>
+                <li>
+                    <label for="prenom">Prénom </label>
+                    <input type="text" id="" name="prenom" required>
+                </li>
+                <li>
+                    <label for="nom">Nom </label>
+                    <input type="text" id="nom" name="nom" required>
+                </li><br>
+                <li>
+                <label for="email"> Email </label>
+                <input type="text"  id="" name="email" placeholder="*****@*****.fr" required>
+                </li><br>
+                <li>
+                <label for="Mot de passe"> Mot de passe </label>
+                <input type="password"id="" name="password" placeholder=" 8 caractères" required>
+                </li><br>
+                <li>
+                <button>
+                </button> Recevoir notre newsletter
+                </li><br>
+                <li><button>
+                </button><p>J'accepte <a href="/cvg.html.twig" > les conditions générales de ventes,</p>
+                </li><br>
+                <li>
+                    <input type="submit" value="Enregistrer">
+                </li>
+            </ul>
+    
+                
+            
+
+        </form>
+</div>
+
+</html>
+
+{% endblock %}
