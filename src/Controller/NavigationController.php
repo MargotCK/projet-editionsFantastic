@@ -12,7 +12,15 @@ class NavigationController extends AbstractController
     #[Route('/connexion', name: 'connexionName')]
     public function connexion(): Response
     {
-        return $this->render('navigation/connexion.html.twig', []);
+        $prenom ='bart';
+        dump($prenom);
+        return $this->render('navigation/connexion.html.twig', [
+            // k => v
+            // key : dénomination récupérée en Twig
+            // value : denomination ds la function du controller
+
+            'prenomTwig'=> $prenom
+        ]);
     }
 
     #[Route('/inscription', name:'inscriptionName')]
@@ -29,9 +37,15 @@ class NavigationController extends AbstractController
     }
 
     #[Route('/allbooks', name:'allBooksName')]
+
     public function allBooks(): Response
     {
-        return $this->render('navigation/allBooks.html.twig',[]);
+        $livreBb='Mïa la petite licorne';
+
+        return $this->render('navigation/allBooks.html.twig',[
+
+            'livreBbTwig'=> $livreBb
+        ]);
     }
 
     #[Route('/world', name:'worldName')]
