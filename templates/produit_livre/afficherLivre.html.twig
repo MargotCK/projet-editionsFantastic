@@ -1,20 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitLivreController!{% endblock %}
+{% block h1 %}Afficher les produits{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <a class="btn btn-info" href="{{path('ajouterLivreName')}}">Ajouter</a>
+   {% if livres %}
+    {##}
+   {% else %}
+    <h4 class="text-danger text-center fst-italic mt-4"> Aucun produit</h4>
+    <h4 class="text-center"></h4>
+   {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello 😎✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/cisco/Documents/MON PROJET/editionsFantastic/src/Controller/ProduitLivreController.php'|file_link(0) }}">src/Controller/ProduitLivreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/cisco/Documents/MON PROJET/editionsFantastic/templates/produit_livre/index.html.twig'|file_link(0) }}">templates/produit_livre/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}

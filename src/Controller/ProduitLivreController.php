@@ -2,19 +2,32 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\LivreRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProduitLivreController extends AbstractController
 {
 
     #les routes du CRUD produitLivre#
 
+    /**
+     * cette route va récupérer tous les livres enbdd autrement dit on va faire une requ^te SQl de sélection.CHAQUE route du CRUD emmène à une requ^te, la route afficher -> select, la route ajouter ->insert into , la rout modifier ->update et le route supprimer->delete
+     *  
+     * le contenu de le route afficher
+     * 
+     * 
+     * */
     #[Route('afficher/produit/livre', name: 'afficherLivreName')]
-    public function afficherLivre(): Response
-    {
+
+    
+    public function afficherLivre(LivreRepository $livreRepository): Response
+    {   #requête SELECT * FROM livre;
+        $livres = $livreRepository->findAll();
+        #dd($livres);
         return $this->render('produit_livre/afficherLivre.html.twig',[
+            'livres'=> $livres
             
         ]);
     }
