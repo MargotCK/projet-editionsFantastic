@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Afficher les produits{% endblock %}
+
+{% block body %}
+    <a class="btn btn-info" href="{{path('ajouterLivreName')}}">Ajouter</a>
+   {% if livres %}
+    {##}
+   {% else %}
+    <h4 class="text-danger text-center fst-italic mt-4"> Aucun produit</h4>
+    <h4 class="text-center"></h4>
+   {% endif %}
+
+{% endblock %}

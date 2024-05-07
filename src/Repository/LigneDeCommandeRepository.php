@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\LingeDeCommande;
+use App\Entity\LigneDeCommande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,11 +18,11 @@ class LingeDeCommandeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LingeDeCommande::class);
+        parent::__construct($registry, LigneDeCommande::class);
     }
 
 //    /**
-//     * @return LingeDeCommande[] Returns an array of LingeDeCommande objects
+//     * @return LigneDeCommande[] Returns an array of LingeDeCommande objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class LingeDeCommandeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?LingeDeCommande
+//    public function findOneBySomeField($value): ?LigneDeCommande
 //    {
 //        return $this->createQueryBuilder('l')
 //            ->andWhere('l.exampleField = :val')

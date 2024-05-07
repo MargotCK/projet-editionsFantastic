@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\LingeDeCommandeRepository;
+use App\Repository\LigneDeCommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LingeDeCommandeRepository::class)]
-class LingeDeCommande
+#[ORM\Entity(repositoryClass: LigneDeCommandeRepository::class)]
+class LigneDeCommande
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
