@@ -14,11 +14,11 @@ class Livre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private ?string $titre = null;
 
-    #[ORM\Column]
-    private ?int $isbn = null;
+    #[ORM\Column(length:13, unique:true)]
+    private ?string $isbn = null;
 
     #[ORM\Column]
     private ?float $prixUnitaire = null;
@@ -27,16 +27,25 @@ class Livre
     private ?\DateTimeInterface $dateDePublication = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $quantiteStockLivre = null;
+    private ?int $quantiteStockLivre = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $resumeLivre = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $format = null;
+    #[ORM\Column(length:15, nullable: true)]
+    private ?string $format = null;
 
     #[ORM\Column]
     private ?int $nbPage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $couv1Livre = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $couv4Livre = null;
+
+    #[ORM\Column(length: 70)]
+    private ?string $personnage = null;
 
     public function getId(): ?int
     {
@@ -55,12 +64,12 @@ class Livre
         return $this;
     }
 
-    public function getIsbn(): ?int
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
 
-    public function setIsbn(int $isbn): static
+    public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
 
@@ -91,12 +100,12 @@ class Livre
         return $this;
     }
 
-    public function getQuantiteStockLivre(): ?float
+    public function getQuantiteStockLivre(): ?int
     {
         return $this->quantiteStockLivre;
     }
 
-    public function setQuantiteStockLivre(?float $quantiteStockLivre): static
+    public function setQuantiteStockLivre(?int $quantiteStockLivre): static
     {
         $this->quantiteStockLivre = $quantiteStockLivre;
 
@@ -115,12 +124,12 @@ class Livre
         return $this;
     }
 
-    public function getFormat(): ?int
+    public function getFormat(): ?string
     {
         return $this->format;
     }
 
-    public function setFormat(?int $format): static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
 
@@ -135,6 +144,42 @@ class Livre
     public function setNbPage(int $nbPage): static
     {
         $this->nbPage = $nbPage;
+
+        return $this;
+    }
+
+    public function getCouv1Livre(): ?string
+    {
+        return $this->couv1Livre;
+    }
+
+    public function setCouv1Livre(?string $couv1Livre): static
+    {
+        $this->couv1Livre = $couv1Livre;
+
+        return $this;
+    }
+
+    public function getCouv4Livre(): ?string
+    {
+        return $this->couv4Livre;
+    }
+
+    public function setCouv4Livre(?string $couv4Livre): static
+    {
+        $this->couv4Livre = $couv4Livre;
+
+        return $this;
+    }
+
+    public function getPersonnage(): ?string
+    {
+        return $this->personnage;
+    }
+
+    public function setPersonnage(string $personnage): static
+    {
+        $this->personnage = $personnage;
 
         return $this;
     }

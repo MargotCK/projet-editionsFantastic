@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Livre;
+use App\Form\ArticleType;
 use App\Repository\LivreRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,9 +25,9 @@ class ProduitLivreController extends AbstractController
 
     
     public function afficherLivre(LivreRepository $livreRepository): Response
-    {   #requête SELECT * FROM livre;
+    {   //requête SELECT * FROM livre;
         $livres = $livreRepository->findAll();
-        #dd($livres);
+        //dd($livres);
         return $this->render('produit_livre/afficherLivre.html.twig',[
             'livres'=> $livres
             
@@ -33,14 +35,23 @@ class ProduitLivreController extends AbstractController
     }
 
     #[Route('/ajouter/produit/livre', name:'ajouterLivreName')]
+
     public function ajouterLivre(): Response 
     {
-        return $this->render('produit_livre/ajouterLivre.html.twig',[
+        $livre= new Livre();
+        //dd($livre);
 
+        $form = $this->createForm(ArticleType::class, $livre);
+        //dd($form);
+
+        return $this->render('produit_livre/ajouterLivre.html.twig',[
+            'formLivre' => $form->createView()
+            
         ]);
     }
 
     #[Route('/modifier/produit/livre', name:'modifierLivreName')]
+
     public function modifierLivre(): Response
     {
         return $this->render('produit_livre/modifierLivre.html.twig', [

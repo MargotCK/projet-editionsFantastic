@@ -20,7 +20,7 @@ class Commande
     #[ORM\Column]
     private ?int $numeroCommande = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $modePaiement = null;
 
     #[ORM\Column]
@@ -32,7 +32,7 @@ class Commande
     #[ORM\Column]
     private ?float $montantTTC = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $statutDeLaCommande = null;
 
     public function getId(): ?int

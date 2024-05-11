@@ -13,10 +13,10 @@ class AdresseFacture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $rueFacture = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $villeFacture = null;
 
     #[ORM\Column]

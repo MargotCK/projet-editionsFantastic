@@ -13,10 +13,10 @@ class AdresseLivraison
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $rueLivraison = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $villeLivraison = null;
 
     #[ORM\Column]
