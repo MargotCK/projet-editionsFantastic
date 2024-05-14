@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\TrancheAgeRepository;
+use App\Entity\TrancheAge;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TrancheAgeRepository;
 
 #[ORM\Entity(repositoryClass: TrancheAgeRepository::class)]
 class TrancheAge

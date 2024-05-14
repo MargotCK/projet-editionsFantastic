@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\LigneDeCommande;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\LigneDeCommandeRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<LingeDeCommande>
@@ -14,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method LingeDeCommande[]    findAll()
  * @method LingeDeCommande[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LingeDeCommandeRepository extends ServiceEntityRepository
+class LigneDeCommandeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -1,10 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block h1 %}Ajouter des produits 😃{% endblock %}
+{% block h1 %}Ajouter des produits {% endblock %}
 
 {% block body %}
-    <a class="btn btn-primary" href="{{path('afficherLivreName')}}">Retour</a>
+    
+    <a class="btn btn-primary " href="{{path('afficherLivreName')}}">Retour</a>
+        <div class="row col-md-8 mx-auto p-2">
+            {{form_start(formLivre)}}
+            
+                {{form_row(formLivre.titre)}}
+                {{form_row(formLivre.isbn)}}
+                {{form_row(formLivre.prixUnitaire)}}
+                {{form_row(formLivre.dateDePublication)}}
+                {{form_row(formLivre.quantiteStockLivre)}}
+                {{form_row(formLivre.resumeLivre)}}
+                {{form_row(formLivre.format)}}
+                {{form_row(formLivre.nbPage)}}
 
-    {{form(formLivre)}}
+                <input type="submit" value="ajouter" class="btn btn-primary w-100">
+            {{form_end(formLivre)}}
+
+        </div>
 
 {% endblock %}

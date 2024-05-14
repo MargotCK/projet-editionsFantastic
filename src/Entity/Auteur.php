@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteurRepository;
+use App\Entity\Auteur;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuteurRepository;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
 class Auteur

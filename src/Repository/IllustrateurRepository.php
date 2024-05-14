@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\IllustrateursTrices;
+use App\Entity\Illustrateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<IllustrateursTrices>
+ * @extends ServiceEntityRepository<Illustrateur>
  *
- * @method IllustrateursTrices|null find($id, $lockMode = null, $lockVersion = null)
- * @method IllustrateursTrices|null findOneBy(array $criteria, array $orderBy = null)
- * @method IllustrateursTrices[]    findAll()
- * @method IllustrateursTrices[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Illustrateur|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Illustrateur|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Illustrateur[]    findAll()
+ * @method Illustrateur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class IllustrateursTricesRepository extends ServiceEntityRepository
+class IllustrateurRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, IllustrateursTrices::class);
+        parent::__construct($registry, Illustrateur::class);
     }
 
 //    /**
-//     * @return IllustrateursTrices[] Returns an array of IllustrateursTrices objects
+//     * @return Illustrateur[] Returns an array of Illustrateur objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class IllustrateursTricesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?IllustrateursTrices
+//    public function findOneBySomeField($value): ?Illustrateur
 //    {
 //        return $this->createQueryBuilder('i')
 //            ->andWhere('i.exampleField = :val')

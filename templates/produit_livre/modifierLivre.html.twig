@@ -1,9 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block h1 %}Modifier les articles{% endblock %}
+{% block h1 %}Modifier l'article n°{{livre.id}}{% endblock %}
 
 {% block body %}
-{#<a class="btn btn-info" href="{{path('ajouterLivreName')}}">Ajouter</a>#}
- 
+    <a class="btn btn-dark " href="{{path('afficherLivreName')}}">Retour</a>
+
+    {{form_start(formLivre)}}
+        
+        {{form_row(formLivre.titre)}}
+        {{form_row(formLivre.isbn)}}
+        {{form_row(formLivre.prixUnitaire)}}
+        {{form_row(formLivre.dateDePublication)}}
+        {{form_row(formLivre.quantiteStockLivre)}}
+        {{form_row(formLivre.resumeLivre)}}
+        {{form_row(formLivre.format)}}
+        {{form_row(formLivre.nbPage)}}
+
+        
+    {{form_end(formLivre)}}
+    <input type="submit" value="Modifier" class="btn btn-primary w-100">
 
 {% endblock %}

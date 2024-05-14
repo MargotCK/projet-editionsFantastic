@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AdresseFactureRepository;
+use App\Entity\AdresseFacture;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdresseFactureRepository;
 
 #[ORM\Entity(repositoryClass: AdresseFactureRepository::class)]
 class AdresseFacture

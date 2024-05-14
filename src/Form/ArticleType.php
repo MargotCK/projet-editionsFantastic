@@ -5,12 +5,19 @@ namespace App\Form;
 use App\Entity\Livre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\Isbn;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
@@ -19,92 +26,123 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
+                'required'=> false,
                 'attr'=>[
-                    'placeholder'=> 'saisir le format en cm',
-                    'class'=> ' border border-primary'
+                'class'=> ' border border-primary'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message'=> 'Veuillez saisir le titre du produit'
+                    ])                    
                 ]
             ])
-            ->add('isbn', IntegerType::class,  [
+
+            ->add('couv1',FileType::class, [
+                'label'=>'1ère de couverture',
+                'required'=>false,
                 'attr'=>[
-                    'placeholder'=> 'saisir le format en cm',
                     'class'=> ' border border-primary'
+                ],
+                'constraints'=> [
+                    new Image([
+                        'minWidth' => 200,
+                        'maxWidth' => 400,
+                        'minHeight' => 200,
+                        'maxHeight' => 400,
+                        'allowLandscape' => false,
+                        'allowPortrait' => false,
+                    ])
                 ]
             ])
+
+            ->add('couv4',FileType::class, [
+                'label'=>'4ème de couverture',
+                'required'=>false,
+                'attr'=>[
+                    'class'=> ' border border-primary'
+                ],
+                'constraints'=> [
+                    new Image([
+                        'minWidth' => 200,
+                        'maxWidth' => 400,
+                        'minHeight' => 200,
+                        'maxHeight' => 400,
+                        'allowLandscape' => false,
+                        'allowPortrait' => false,
+                    ])
+                ]
+            ])
+
+            ->add('isbn', TextType::class,  [
+                'required'=> false,
+                'attr'=>[
+                    'class'=> ' border border-primary'
+                ],
+                'constraints' =>[
+                    new NotBlank([
+                    ]),
+                    new Length([
+                        'min'=> 13,
+                        'max'=> 13,
+                        'minMessage'=>'Le numéro ISBN doit être au format EAN valide.',
+                        'maxMessage'=>'Le numéro ISBN doit être au format EAN valide.'
+                    ])
+                ]
+            ])
+
             ->add('prixUnitaire', MoneyType::class, [
+                'label'=> 'Prix du livre',
+                'required'=> false,
                 'attr'=>[
-                    'placeholder'=> 'saisir le format en cm',
+                    'placeholder'=> 'saisir le prix du produit',
                     'class'=> ' border border-primary'
                 ]
             ])
             ->add('dateDePublication', DateType::class, [
+                'required'=> false,
                 'attr'=>[
-                    'placeholder'=> 'saisir le format en cm',
                     'class'=> ' border border-primary'
                 ]
             ])
-            ->add('quantiteStockLivre', NumberType::class, [
+            
+            ->add('quantiteStockLivre', IntegerType::class, [
                 'label'=>'Quantité de livre en stock',
+                'required'=> false,
                 'attr'=>[
                     'class'=> ' border border-primary'
+                ],
+                'constraints'=> [
+                    new PositiveOrZero([])
                 ]
+            ])
 
-            ])
             ->add('resumeLivre',TextareaType::class, [
-                'label'=> 'Résumé du livre'  ,
+                'label'=> 'Résumé du livre',
+                'required'=> false,
                 'attr'=>[
                     'class'=> ' border border-primary'
                 ]
-                
             ])
-            ->add('format', IntegerType::class, [
+
+            ->add('format', TextType::class, [
+                'required'=> false,
                 'attr'=>[
                     'placeholder'=> 'saisir le format en cm',
                     'class'=> ' border border-primary'
                 ]
             ])
-           
-            ->add('nbPage', NumberType::class, [
+        
+            ->add('nbPage', IntegerType::class, [
                 'label'=>'Nombre de page',
+                'required'=> false,
                 'attr'=>[
                     'class'=> ' border border-primary'
                 ]
-            ])
-        ;
-
-        /**
-         * L'objet builder permet de construire le formulaire chaque métode va correspondre a àun élément du formulaire. Chaque méthode add va correspondre à un élément du formulaire, en Symfonie on appelle les éléments  des childs. 
-         * 
-         * Il y a 3 arguments obligatoires dans les méthodes add :
-         * le 1er le nom de la propriété dans l'entité si l'entité est lié à une entity (string)
-         * 
-         * le 2 ème argument est le nom de la class, Symfony lui en donne un par défaut en se basant sur l'entité mais on peut lui en donner une nous même soit
-         *On trouve sur la  documentation " symfony type " donne la liste de toutes les class de tous les types
-
-         Le 3 ème argument est le tableau des options, il est à l'intérieur des parenthèses de la méthode add comme ceci :
-                    ->add('resumeLivre',TextareaType::class, [])
-            il y a deux genres d'option:
-            -
-
-
-        /!\ un tableau à toujours une clé et une valeur k=> valeur
-
-
-LES FORMULAIRES
-
-on a généré un nouveau dossier le dossier form, une nouvelle type de class : form
-DC'est dedans que nous allons trouver nos formulaires, nos formulaires dans le moule , le plan de la construction
-   
-la fonction buildForm c'est la creation formulaire elle a en dépendance un objet buider ($buider)
-
-pour faire apparaitre le formulaire sur le navigateur
-         */
-
-
-    }
-
+            ]);
         
 
 
+    }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

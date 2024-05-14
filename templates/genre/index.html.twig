@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Gestion des genres {% endblock %}
+
+{% block body %}
+    
+    <a class="btn btn-info" href="{{ path('app_genre_new') }}">Ajouter</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.id }}</td>
+                <td>{{ genre.categorieGenre }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_genre_show', {'id': genre.id}) }}">Fiche</a>
+                    <a class="btn btn-primary" href="{{ path('app_genre_edit', {'id': genre.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

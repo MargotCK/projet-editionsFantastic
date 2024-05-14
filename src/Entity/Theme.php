@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ThemeRepository;
+use App\Entity\Theme;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ThemeRepository;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
 class Theme

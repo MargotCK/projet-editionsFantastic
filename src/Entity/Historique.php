@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\HistoriqueRepository;
+use App\Entity\Historique;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\HistoriqueRepository;
 
 #[ORM\Entity(repositoryClass: HistoriqueRepository::class)]
 class Historique

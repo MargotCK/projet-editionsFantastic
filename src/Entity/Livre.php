@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\LivreRepository;
+use App\Entity\Livre;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LivreRepository;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
 class Livre
@@ -16,6 +17,12 @@ class Livre
 
     #[ORM\Column(length: 150)]
     private ?string $titre = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $couv1 = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $couv4 = null;
 
     #[ORM\Column(length:13, unique:true)]
     private ?string $isbn = null;
@@ -38,15 +45,8 @@ class Livre
     #[ORM\Column]
     private ?int $nbPage = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $couv1Livre = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $couv4Livre = null;
-
-    #[ORM\Column(length: 70)]
-    private ?string $personnage = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +60,48 @@ class Livre
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
+
+        return $this;
+    }
+
+    
+    public function getCouv1Livre(): ?string
+    {
+        return $this->couv1Livre;
+    }
+
+    public function setCouv1Livre(?string $couv1Livre): static
+    {
+        $this->couv1Livre = $couv1Livre;
+
+        return $this;
+    }
+
+    public function getCouv4Livre(): ?string
+    {
+        return $this->couv4Livre;
+    }
+
+    public function getCouv1(): ?string
+    {
+        return $this->couv1;
+    }
+
+    public function setCouv1(?string $couv1): static
+    {
+        $this->couv1 = $couv1;
+
+        return $this;
+    }
+
+    public function getCouv4(): ?string
+    {
+        return $this->couv4;
+    }
+
+    public function setCouv4(?string $couv4): static
+    {
+        $this->couv4 = $couv4;
 
         return $this;
     }
@@ -148,39 +190,5 @@ class Livre
         return $this;
     }
 
-    public function getCouv1Livre(): ?string
-    {
-        return $this->couv1Livre;
-    }
-
-    public function setCouv1Livre(?string $couv1Livre): static
-    {
-        $this->couv1Livre = $couv1Livre;
-
-        return $this;
-    }
-
-    public function getCouv4Livre(): ?string
-    {
-        return $this->couv4Livre;
-    }
-
-    public function setCouv4Livre(?string $couv4Livre): static
-    {
-        $this->couv4Livre = $couv4Livre;
-
-        return $this;
-    }
-
-    public function getPersonnage(): ?string
-    {
-        return $this->personnage;
-    }
-
-    public function setPersonnage(string $personnage): static
-    {
-        $this->personnage = $personnage;
-
-        return $this;
-    }
+    
 }

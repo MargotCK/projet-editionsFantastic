@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CollectionRepository;
+use App\Entity\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CollectionRepository;
 
 #[ORM\Entity(repositoryClass: CollectionRepository::class)]
 class Collection
