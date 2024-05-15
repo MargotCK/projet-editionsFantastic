@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}{{ theme.categorieTheme }}{% endblock %}
+
+{% block body %}
+    
+    <a class="btn btn-dark" href="{{ path('app_theme_index') }}">Retour</a>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ theme.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ theme.categorieTheme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <a class="btn btn-primary mb-2" href="{{ path('app_theme_edit', {'id': theme.id}) }}">Modifier</a>
+
+    {{ include('theme/_delete_form.html.twig') }}
+{% endblock %}
