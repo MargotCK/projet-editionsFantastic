@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Livre;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LivreRepository;
@@ -44,6 +46,39 @@ class Livre
 
     #[ORM\Column]
     private ?int $nbPage = null;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Age $Age = null;
+
+    #[ORM\ManyToMany(targetEntity: Auteur::class, inversedBy: 'livres')]
+    private Collection $auteur;
+
+    #[ORM\ManyToMany(targetEntity: Illustrateur::class, inversedBy: 'livres')]
+    private Collection $Illustrateur;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Collection $Collection = null;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Genre $Genre = null;
+
+    #[ORM\ManyToMany(targetEntity: Theme::class, inversedBy: 'livres')]
+    private Collection $Theme;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'livres')]
+    private Collection $User;
+
+    #[ORM\ManyToMany(targetEntity: Commande::class, inversedBy: 'livres')]
+    private Collection $Commande;
+
+    public function __construct()
+    {
+        $this->auteur = new ArrayCollection();
+        $this->Illustrateur = new ArrayCollection();
+        $this->Theme = new ArrayCollection();
+        $this->User = new ArrayCollection();
+        $this->Commande = new ArrayCollection();
+    }
 
 
     
@@ -186,6 +221,162 @@ class Livre
     public function setNbPage(int $nbPage): static
     {
         $this->nbPage = $nbPage;
+
+        return $this;
+    }
+
+    public function getAge(): ?Age
+    {
+        return $this->Age;
+    }
+
+    public function setAge(?Age $Age): static
+    {
+        $this->Age = $Age;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Auteur>
+     */
+    public function getAuteur(): Collection
+    {
+        return $this->auteur;
+    }
+
+    public function addAuteur(Auteur $auteur): static
+    {
+        if (!$this->auteur->contains($auteur)) {
+            $this->auteur->add($auteur);
+        }
+
+        return $this;
+    }
+
+    public function removeAuteur(Auteur $auteur): static
+    {
+        $this->auteur->removeElement($auteur);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Illustrateur>
+     */
+    public function getIllustrateur(): Collection
+    {
+        return $this->Illustrateur;
+    }
+
+    public function addIllustrateur(Illustrateur $illustrateur): static
+    {
+        if (!$this->Illustrateur->contains($illustrateur)) {
+            $this->Illustrateur->add($illustrateur);
+        }
+
+        return $this;
+    }
+
+    public function removeIllustrateur(Illustrateur $illustrateur): static
+    {
+        $this->Illustrateur->removeElement($illustrateur);
+
+        return $this;
+    }
+
+    public function getCollection(): ?Collection
+    {
+        return $this->Collection;
+    }
+
+    public function setCollection(?Collection $Collection): static
+    {
+        $this->Collection = $Collection;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): static
+    {
+        $this->Genre = $Genre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Theme>
+     */
+    public function getTheme(): Collection
+    {
+        return $this->Theme;
+    }
+
+    public function addTheme(Theme $theme): static
+    {
+        if (!$this->Theme->contains($theme)) {
+            $this->Theme->add($theme);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): static
+    {
+        $this->Theme->removeElement($theme);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->User->contains($user)) {
+            $this->User->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        $this->User->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommande(): Collection
+    {
+        return $this->Commande;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->Commande->contains($commande)) {
+            $this->Commande->add($commande);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        $this->Commande->removeElement($commande);
 
         return $this;
     }
