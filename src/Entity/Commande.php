@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Commande;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CommandeRepository;
@@ -35,6 +37,14 @@ class Commande
 
     #[ORM\Column(length: 20)]
     private ?string $statutDeLaCommande = null;
+
+    #[ORM\ManyToMany(targetEntity: Livre::class, mappedBy: 'Commande')]
+    private Collection $livres;
+
+    public function __construct()
+    {
+        $this->livres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +131,33 @@ class Commande
     public function setStatutDeLaCommande(string $statutDeLaCommande): static
     {
         $this->statutDeLaCommande = $statutDeLaCommande;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Livre>
+     */
+    public function getLivres(): Collection
+    {
+        return $this->livres;
+    }
+
+    public function addLivre(Livre $livre): static
+    {
+        if (!$this->livres->contains($livre)) {
+            $this->livres->add($livre);
+            $livre->addCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivre(Livre $livre): static
+    {
+        if ($this->livres->removeElement($livre)) {
+            $livre->removeCommande($this);
+        }
 
         return $this;
     }
