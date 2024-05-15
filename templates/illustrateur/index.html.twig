@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Gestion des illustrateurs {% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-info" href="{{ path('app_illustrateur_new') }}">Ajouter</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for illustrateur in illustrateurs %}
+            <tr>
+                <td>{{ illustrateur.id }}</td>
+                <td>{{ illustrateur.prenom }}</td>
+                <td>{{ illustrateur.nom }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_illustrateur_show', {'id': illustrateur.id}) }}">Fiche</a>
+                    <a class="btn btn-primary" href="{{ path('app_illustrateur_edit', {'id': illustrateur.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

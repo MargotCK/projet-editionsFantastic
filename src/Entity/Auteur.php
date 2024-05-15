@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteurRepository;
+use App\Entity\Auteur;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuteurRepository;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
 class Auteur
@@ -13,10 +14,10 @@ class Auteur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 70)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 70)]
     private ?string $nomAuteur = null;
 
     public function getId(): ?int

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Gestions de la tranche d'âge {% endblock %}
+
+{% block body %}
+
+ <a class="btn btn-info" href="{{ path('app_age_new') }}">Ajouter</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tranche d'âge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for age in ages %}
+            <tr>
+                <td>{{ age.id }}</td>
+                <td>{{ age.tranche }}</td>
+                <td>
+                    <a class="btn btn-warning"  href="{{ path('app_age_show', {'id': age.id}) }}">Fiche</a>
+                    <a class="btn btn-primary" href="{{ path('app_age_edit', {'id': age.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

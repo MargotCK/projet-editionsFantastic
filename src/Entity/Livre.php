@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\LivreRepository;
+use App\Entity\Livre;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LivreRepository;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
 class Livre
@@ -14,11 +15,17 @@ class Livre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private ?string $titre = null;
 
-    #[ORM\Column]
-    private ?int $isbn = null;
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $couv1 = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $couv4 = null;
+
+    #[ORM\Column(length:13, unique:true)]
+    private ?string $isbn = null;
 
     #[ORM\Column]
     private ?float $prixUnitaire = null;
@@ -27,17 +34,19 @@ class Livre
     private ?\DateTimeInterface $dateDePublication = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $quantiteStockLivre = null;
+    private ?int $quantiteStockLivre = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $resumeLivre = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $format = null;
+    #[ORM\Column(length:15, nullable: true)]
+    private ?string $format = null;
 
     #[ORM\Column]
     private ?int $nbPage = null;
 
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -55,12 +64,54 @@ class Livre
         return $this;
     }
 
-    public function getIsbn(): ?int
+    
+    public function getCouv1Livre(): ?string
+    {
+        return $this->couv1Livre;
+    }
+
+    public function setCouv1Livre(?string $couv1Livre): static
+    {
+        $this->couv1Livre = $couv1Livre;
+
+        return $this;
+    }
+
+    public function getCouv4Livre(): ?string
+    {
+        return $this->couv4Livre;
+    }
+
+    public function getCouv1(): ?string
+    {
+        return $this->couv1;
+    }
+
+    public function setCouv1(?string $couv1): static
+    {
+        $this->couv1 = $couv1;
+
+        return $this;
+    }
+
+    public function getCouv4(): ?string
+    {
+        return $this->couv4;
+    }
+
+    public function setCouv4(?string $couv4): static
+    {
+        $this->couv4 = $couv4;
+
+        return $this;
+    }
+
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
 
-    public function setIsbn(int $isbn): static
+    public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
 
@@ -91,12 +142,12 @@ class Livre
         return $this;
     }
 
-    public function getQuantiteStockLivre(): ?float
+    public function getQuantiteStockLivre(): ?int
     {
         return $this->quantiteStockLivre;
     }
 
-    public function setQuantiteStockLivre(?float $quantiteStockLivre): static
+    public function setQuantiteStockLivre(?int $quantiteStockLivre): static
     {
         $this->quantiteStockLivre = $quantiteStockLivre;
 
@@ -115,12 +166,12 @@ class Livre
         return $this;
     }
 
-    public function getFormat(): ?int
+    public function getFormat(): ?string
     {
         return $this->format;
     }
 
-    public function setFormat(?int $format): static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
 
@@ -138,4 +189,6 @@ class Livre
 
         return $this;
     }
+
+    
 }

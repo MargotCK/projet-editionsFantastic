@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Gestions des collections {% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-info" href="{{ path('app_collection_new') }}">Ajouter</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collection in collections %}
+            <tr>
+                <td>{{ collection.id }}</td>
+                <td>{{ collection.categorieCollection }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_collection_show', {'id': collection.id}) }}">Fiche</a>
+                    <a class= "btn btn-primary" href="{{ path('app_collection_edit', {'id': collection.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CollectionRepository;
+use App\Entity\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CollectionRepository;
 
 #[ORM\Entity(repositoryClass: CollectionRepository::class)]
 class Collection
@@ -13,7 +14,7 @@ class Collection
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $categorieCollection = null;
 
     public function getId(): ?int

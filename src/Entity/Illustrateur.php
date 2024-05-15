@@ -2,21 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\IllustrateursTricesRepository;
+use App\Repository\IllustrateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: IllustrateursTricesRepository::class)]
-class IllustrateursTrices
+#[ORM\Entity(repositoryClass: IllustrateurRepository::class)]
+class Illustrateur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 70, nullable: true)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 70, nullable: true)]
     private ?string $nom = null;
 
     public function getId(): ?int

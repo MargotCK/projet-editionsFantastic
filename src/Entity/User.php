@@ -13,10 +13,10 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 70)]
     private ?string $prenomUser = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 70)]
     private ?string $nomUser = null;
 
     #[ORM\Column(length: 8)]
@@ -25,10 +25,10 @@ class User
     #[ORM\Column]
     private ?int $telephoneUser = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 80)]
     private ?string $emailUser = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 15)]
     private ?string $roleUser = null;
 
     public function getId(): ?int

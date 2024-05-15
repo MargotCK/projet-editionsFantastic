@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\LigneDeCommandeRepository;
+use App\Entity\LigneDeCommande;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LigneDeCommandeRepository;
 
 #[ORM\Entity(repositoryClass: LigneDeCommandeRepository::class)]
 class LigneDeCommande

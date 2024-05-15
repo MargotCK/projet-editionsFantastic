@@ -1,0 +1,22 @@
+
+
+.inputCyan{
+  background-color: rgb(231, 52, 234);
+}
+
+
+
+.navbar-brand {
+    font-family: "Racing Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } 
+  
+  
+  
+  .bg-navbar {
+    background-color: rgb(6, 6, 188) !important;
+  }
+  .bg body {
+      background-image: linear-gradient(to bottom, #230887, #201a90, #1c2799, #1832a2, #153daa, #2650b5, #3762c0, #4974c9, #6d93d5, #93b1e0, #bbcfea, #e7edf4);
+  }

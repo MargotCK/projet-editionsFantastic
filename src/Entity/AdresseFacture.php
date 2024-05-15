@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AdresseFactureRepository;
+use App\Entity\AdresseFacture;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdresseFactureRepository;
 
 #[ORM\Entity(repositoryClass: AdresseFactureRepository::class)]
 class AdresseFacture
@@ -13,10 +14,10 @@ class AdresseFacture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $rueFacture = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $villeFacture = null;
 
     #[ORM\Column]

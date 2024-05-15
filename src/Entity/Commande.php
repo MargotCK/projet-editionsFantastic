@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\CommandeRepository;
+use App\Entity\Commande;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommandeRepository;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -20,7 +21,7 @@ class Commande
     #[ORM\Column]
     private ?int $numeroCommande = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $modePaiement = null;
 
     #[ORM\Column]
@@ -32,7 +33,7 @@ class Commande
     #[ORM\Column]
     private ?float $montantTTC = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $statutDeLaCommande = null;
 
     public function getId(): ?int

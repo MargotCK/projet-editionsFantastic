@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Livre;
+use App\Form\ArticleType;
 use App\Repository\LivreRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,41 +24,90 @@ class ProduitLivreController extends AbstractController
      * 
      * 
      * */
-    #[Route('afficher/produit/livre', name: 'afficherLivreName')]
+
+    #[Route('/produit/livre')]
+    // ROUTE AFFICHER
+    #[Route('/afficher', name: 'afficherLivreName')]
 
     
     public function afficherLivre(LivreRepository $livreRepository): Response
-    {   #requête SELECT * FROM livre;
+    {   //requête SELECT * FROM livre;
         $livres = $livreRepository->findAll();
-        #dd($livres);
+        //dd($livres);
         return $this->render('produit_livre/afficherLivre.html.twig',[
             'livres'=> $livres
             
         ]);
     }
 
-    #[Route('/ajouter/produit/livre', name:'ajouterLivreName')]
-    public function ajouterLivre(): Response 
+
+    // ROUTE AJOUTER
+    #[Route('/ajouter', name:'ajouterLivreName')]
+
+    public function ajouterLivre(Request $request, EntityManagerInterface $em): Response 
     {
+        $livre = new Livre();
+        //dd($livre);
+
+        $form = $this->createForm(ArticleType::class, $livre);
+
+        //Traietement du formulaire
+        $form->handleRequest($request);
+
+        //Insertion d'une contrainte
+        if($form->isSubmitted() && $form->isValid()){
+
+            $em->persist($livre); // Insertion de quel objet
+            $em->flush(); // éxécution
+
+            return $this->redirectToRoute('afficherLivreName');
+        }
+
         return $this->render('produit_livre/ajouterLivre.html.twig',[
+            'formLivre' => $form->createView() // Création du code HTML du formulaire
+            
+        ]);
+    }
+        
 
+     //COLONNE FICHE DU TABLEAU GESTION DES PRODUITS
+    #[Route('/fiche/{id}', name:'ficheName')]
+
+    public function ficheLivre(Livre $livre): Response
+    {
+        return $this->render('produit_livre/ficheLivre.html.twig',[
+            'livre' => $livre
         ]);
     }
 
-    #[Route('/modifier/produit/livre', name:'modifierLivreName')]
-    public function modifierLivre(): Response
+
+    // ROUTE MODIFIER
+    #[Route('/modifier/{id}', name:'modifierLivreName')]
+
+    public function modifierLivre(Livre $livre, Request $request, EntityManagerInterface $em): Response
     {
+        $form = $this->createForm(ArticleType::class, $livre);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() AND $form->isValid()){
+            $em->flush();
+            return $this->redirectToRoute('afficherLivreName');
+        }
         return $this->render('produit_livre/modifierLivre.html.twig', [
-
+            'livre'=> $livre,
+            'formLivre' => $form->createView()
         ]);
     }
 
-    #[Route('/supprimer/produit/livre',name:'supprimerLivreName')]
-    public function supprimerLivre():Response
-    {
-        return $this->render('produit_livre/supprimerLivre.html.twig',[
+      // ROUTE SUPPRIMER
+    #[Route('/{id}',name:'supprimerLivreName')]
 
-        ]);
+    public function supprimerLivre(Livre $livre, EntityManagerInterface $em):Response
+    {
+        $em->remove($livre);
+        $em->flush();
+        return $this->redirectToRoute('afficherLivreName');
     }
 
 

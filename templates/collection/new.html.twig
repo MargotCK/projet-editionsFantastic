@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Ajouter {% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-dark" href="{{ path('app_collection_index') }}">Retour</a>
+
+    {{ include('collection/_form.html.twig') }}
+
+
+{% endblock %}

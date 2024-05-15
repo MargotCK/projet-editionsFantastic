@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AdresseLivraisonRepository;
+use App\Entity\AdresseLivraison;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdresseLivraisonRepository;
 
 #[ORM\Entity(repositoryClass: AdresseLivraisonRepository::class)]
 class AdresseLivraison
@@ -13,10 +14,10 @@ class AdresseLivraison
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $rueLivraison = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $villeLivraison = null;
 
     #[ORM\Column]

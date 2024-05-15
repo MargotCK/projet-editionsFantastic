@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\GenreRepository;
+use App\Entity\Genre;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GenreRepository;
 
 #[ORM\Entity(repositoryClass: GenreRepository::class)]
 class Genre
@@ -13,7 +14,7 @@ class Genre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $categorieGenre = null;
 
     public function getId(): ?int

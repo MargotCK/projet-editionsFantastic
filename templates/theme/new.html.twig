@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Ajouter{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-dark" href="{{ path('app_theme_index') }}">Retour</a>
+
+    {{ include('theme/_form.html.twig') }}
+
+    
+{% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ThemeRepository;
+use App\Entity\Theme;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ThemeRepository;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
 class Theme
@@ -13,7 +14,7 @@ class Theme
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $categorieTheme = null;
 
     public function getId(): ?int
